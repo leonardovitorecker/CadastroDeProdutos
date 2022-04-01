@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace ControleEstoque1
 {
     [Table("produto", Schema = "public")]
+
     public  class DtoProduto
     {
         [Key]
