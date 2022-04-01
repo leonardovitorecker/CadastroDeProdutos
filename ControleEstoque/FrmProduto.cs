@@ -20,20 +20,20 @@ namespace ControleEstoque1
         private void CarregarGrid1()
         {
             Model get = new Model();
-            List<DtoProduto> lista = get.ListProdutos();
+            List<DtoProduto2> lista = get.ListProdutos();
             this.dataGridView2.DataSource = lista;
             this.dataGridView2.Refresh();
         }
 
         private void bntNovo_Click(object sender, EventArgs e)
         {
-            txt_CodProd.Text= String.Empty;
+           
             txt_CodBarras.Text= string.Empty;
             txt_NomeProduto.Text = string.Empty;
             txt_Fabricante.Text = string.Empty;
             txt_Validade.Text= string.Empty;
             LiberarCampos();
-            txt_NomeProduto.Focus();
+            txt_CodBarras.Focus();
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -42,12 +42,12 @@ namespace ControleEstoque1
             {
                 Model set = new Model();
                 DtoProduto p = new DtoProduto();
-                p.CodigoBarras = txt_CodBarras.Text;
-                p.Nome = txt_NomeProduto.Text;
-                p.Fabricante = txt_Fabricante.Text;
+                p.codigobarras = txt_CodBarras.Text;
+                p.nome = txt_NomeProduto.Text;
+                p.fabricante = txt_Fabricante.Text;
                 if (txt_CodProd.Text != string.Empty)
                 {
-                    p.Codprod= int.Parse(txt_CodProd.Text);
+                    p.id= int.Parse(txt_CodProd.Text);
                     set.EditProduto(p);
                 }
                 else
@@ -85,7 +85,7 @@ namespace ControleEstoque1
         private void btnEditar_Click(object sender, EventArgs e)
         {
             LiberarCampos();
-            txt_NomeProduto.Focus();
+            txt_CodBarras.Focus();
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -99,19 +99,24 @@ namespace ControleEstoque1
             }
         }
 
+
+
+       
         
 
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView2_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            int CodProd= (Int32)dataGridView2.CurrentRow.Cells[0].Value;
+            int id = (Int32)dataGridView2.CurrentRow.Cells[0].Value;
 
             Model get = new Model();
-            DtoProduto p = get.GetProdutoCodProd(CodProd);
-            txt_CodProd.Text = p.Codprod.ToString();
-            txt_NomeProduto.Text = p.Nome;
+            DtoProduto2 p = get.GetProdutoId(id);
+            txt_CodProd.Text = p.id.ToString();
+            txt_CodBarras.Text = p.codigobarras.ToString();
+
             LiberarCampos();
             txt_NomeProduto.Focus();
         }
+    
     }
     
 }

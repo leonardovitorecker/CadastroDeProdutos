@@ -133,6 +133,7 @@
             this.txt_CodProd.Name = "txt_CodProd";
             this.txt_CodProd.Size = new System.Drawing.Size(222, 20);
             this.txt_CodProd.TabIndex = 11;
+           
             // 
             // label3
             // 
@@ -150,7 +151,8 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(449, 150);
             this.dataGridView2.TabIndex = 12;
-            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
+           
+            this.dataGridView2.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView2_MouseDoubleClick);
             // 
             // FrmProduto
             // 

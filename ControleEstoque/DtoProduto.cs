@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace ControleEstoque1
 {
@@ -12,11 +13,11 @@ namespace ControleEstoque1
 
     public  class DtoProduto
     {
-        [Key]
-        public int Codprod { get; set; }
-        public string CodigoBarras { get; set; }
-        public string Nome { get; set; }
-        public string Fabricante { get; set; }
-        public string Validade { get; set; }
+       [Key]
+        public int id{ get; set; }
+        public string codigobarras { get; set; }
+        public string nome { get; set; }
+        public string fabricante { get; set; }
+        public string validade { get; set; }
     }
 }

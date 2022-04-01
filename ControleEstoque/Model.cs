@@ -28,13 +28,13 @@ namespace ControleEstoque1
         public void EditProduto(DtoProduto prod)
         {
             Context db = new Context();
-            DtoProduto p = db.produto.FirstOrDefault(produt => produt.Codprod == prod.Codprod);
+            DtoProduto p = db.produto.FirstOrDefault(produt => produt.id == prod.id);
 
-            p.Codprod = prod.Codprod;
-            p.CodigoBarras = prod.CodigoBarras;
-            p.Nome = prod.Nome;
-            p.Fabricante = prod.Fabricante;
-            p.Validade = prod.Validade;
+            p.id = prod.id;
+            p.codigobarras = prod.codigobarras;
+            p.nome = prod.nome;
+            p.fabricante = prod.fabricante;
+            p.validade = prod.validade;
 
             db.SaveChanges();
         }
@@ -50,19 +50,16 @@ namespace ControleEstoque1
             db.SaveChanges();
         }
         //produto
-        public List<DtoProduto> ListProdutos()
+        public List<DtoProduto2> ListProdutos()
             {
             Context db=new Context();
-            List<DtoProduto> result1 = (from p in db.produto
-                                        select new DtoProduto
+            List<DtoProduto2> result1 = (from p in db.produto
+                                        select new DtoProduto2
                                         {
-                                            Codprod = p.Codprod,
-                                            CodigoBarras = p.CodigoBarras,
-                                            Nome = p.Nome,
-                                            Fabricante = p.Fabricante,
-                                            Validade = p.Validade
+                                           id=p.id,
+                                           codigobarras = p.codigobarras
                                         }).ToList();
-            return new List<DtoProduto>(result1);
+            return new List<DtoProduto2>(result1);
 
             }
 
@@ -82,20 +79,15 @@ namespace ControleEstoque1
 
         }
         //produto
-        public DtoProduto GetProdutoCodProd ( int Codprod)
+        public DtoProduto2 GetProdutoId(int id)
         {
             Context db = new Context ();
             var result1 = (from p in db.produto
-                           where p.Codprod == Codprod
-                           select new DtoProduto
-                           {
-                               Codprod = p.Codprod,
-                               CodigoBarras = p.CodigoBarras,
-                               Nome = p.Nome,
-                               Validade = p.Validade,
-                               Fabricante = p.Fabricante
-                           }).FirstOrDefault();
-            var result2 = db.produto.Where(p => p.Codprod == Codprod).FirstOrDefault();
+                           where p.id == id
+                           select new DtoProduto2
+                           {id = p.id,
+                           codigobarras=p.codigobarras}).FirstOrDefault();
+            var result2 = db.produto.Where(p => p.id == id).FirstOrDefault();
             return result1;
         }
         //usuario
@@ -115,10 +107,10 @@ namespace ControleEstoque1
             return result;
         }
         //produto
-        public void DeletarProduto( int Codprod)
+        public void DeletarProduto( int id)
         {
             Context db=new Context ();
-            DtoProduto p = db.produto.FirstOrDefault(prod => prod.Codprod == Codprod);
+            DtoProduto p = db.produto.FirstOrDefault(prod => prod.id == id);
             db.produto.Remove(p);
             db.SaveChanges();
 
